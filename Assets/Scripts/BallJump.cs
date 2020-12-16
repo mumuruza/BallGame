@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class BallJump : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody2D rigidbody;
-    [SerializeField]
-    private float jumpForce = 5;
-    [SerializeField]
-    private GroundCheck groundCheck;
+    [SerializeField] private new Rigidbody2D rigidbody;
+    [SerializeField] private float jumpForce = 5;
+    [SerializeField] private GroundCheck groundCheck;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -17,6 +15,5 @@ public class BallJump : MonoBehaviour
             if (groundCheck.IsGrounded())
                 rigidbody.AddForce(Vector2.up * jumpForce);
         }
-        
     }
 }

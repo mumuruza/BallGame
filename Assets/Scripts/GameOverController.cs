@@ -7,7 +7,7 @@ public class GameOverController : MonoBehaviour
 {
     private const string highscoreKey = "highscore";
     [SerializeField]
-    private CoinCollector coinCollector;
+    private CoinsCollector coinsCollector;
     [SerializeField]
     private Text currentScore, highscoreText;
     [SerializeField]
@@ -23,7 +23,7 @@ public class GameOverController : MonoBehaviour
 
     public void GameOver() 
     {
-        int score = coinCollector.Coins;
+        int score = coinsCollector.Coins;
         currentScore.text = "Your score: " + score.ToString();
         int highScore = PlayerPrefs.GetInt(highscoreKey, 0);
 

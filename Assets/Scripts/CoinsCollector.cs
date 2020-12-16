@@ -4,25 +4,24 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
-public class CoinCollector : MonoBehaviour
+public class CoinsCollector : MonoBehaviour
 {
-    public event Action<int> CoinValueChanged;
-    private int coins;
+    public event Action<int> CoinsChanged;
 
-    public int Coins => coins;
+    public int Coins { get; private set; }
 
     private void Start()
     {
-        coins = 0;
-        CoinValueChanged?.Invoke(coins);
+        Coins = 0;
+        CoinsChanged?.Invoke(Coins);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out Coin coin))
         {
-            coins++;
-            CoinValueChanged?.Invoke(coins);
+            Coins++;
+            CoinsChanged?.Invoke(Coins);
             other.gameObject.SetActive(false);
         }
     }

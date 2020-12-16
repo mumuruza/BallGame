@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class AnimatorActivator : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject target;
+    [SerializeField] private GameObject target;
 
     public void Activate()
     {
         target.SetActive(true);
     }
-    public void DisActivate()
+
+    public void Disactivate()
     {
         target.SetActive(false);
     }

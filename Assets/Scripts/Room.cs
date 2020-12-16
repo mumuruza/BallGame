@@ -5,18 +5,13 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public float Width;
-    [SerializeField]
-    private List<Transform> obstaclePoints;
-    [SerializeField]
-    private float chance;
-    [SerializeField]
-    private CoinSpawner coinSpawner;
-    private List<Obstacle> obstacles;
-   
-    private void Awake()
-    {
-        obstacles = new List<Obstacle>();
-    }
+
+    [SerializeField] private List<Transform> obstaclePoints;
+    [SerializeField] private float chance;
+    [SerializeField] private CoinSpawner coinSpawner;
+
+    private List<Obstacle> obstacles = new List<Obstacle>();
+    private List<Coin> coins = new List<Coin>();
 
     public bool IsOutsideViewPort(Camera cam) 
     {
@@ -31,6 +26,11 @@ public class Room : MonoBehaviour
         }
         obstacles.Clear();
 
+        foreach (var c in coins)
+        {
+            c.gameObject.SetActive(false);
+        }
+        coins.Clear();
 
         foreach (var i in obstaclePoints)
         {
@@ -42,9 +42,6 @@ public class Room : MonoBehaviour
                 obstacles.Add(obst);
             }
         }
-        coinSpawner.SpawnCoins(Width, transform);
-
+        coins = coinSpawner.SpawnCoins(Width, transform);
     }
-
- 
 }
